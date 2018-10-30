@@ -11,10 +11,7 @@ interface
 
 uses
 
-    DependencyIntf,
-    RequestIntf,
-    ResponseIntf,
-    RouteHandlerImpl;
+    fano;
 
 type
 
@@ -27,10 +24,6 @@ type
     end;
 
 implementation
-
-uses
-
-    JsonResponseImpl;
 
     function THiController.handleRequest(
           const request : IRequest;
