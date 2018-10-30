@@ -1,0 +1,37 @@
+#------------------------------------------------------------
+# Fano Web Framework Skeleton Application (https://fano.juhara.id)
+#
+# @link      https://github.com/zamronypj/fano-app
+# @copyright Copyright (c) 2018 Zamrony P. Juhara
+# @license   https://github.com/zamronypj/fano-app/blob/master/LICENSE (GPL 3.0)
+#-------------------------------------------------------------
+
+#----------------------------------------------
+# User configuration for production build
+# Please see FreePascal Documentation for available
+# compiler switch configurations
+#----------------------------------------------
+
+#----------------------------------------------
+# halt compiler after error
+#----------------------------------------------
+-Se
+
+#----------------------------------------------
+# Level 3 optimization
+#----------------------------------------------
+-O3
+
+#----------------------------------------------
+# Move frequent-used variable in register
+# This switch is actually redundant as this
+# already be covered by -O3 switch above.
+# It puts here just for completeness.
+#----------------------------------------------
+-Ooregvar
+
+#----------------------------------------------
+# Strip all debug information and symbols
+# from output executable
+#----------------------------------------------
+-Xs
