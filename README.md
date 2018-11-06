@@ -1,6 +1,6 @@
 # Fano Web Framework Skeleton Application with Middleware
 
-Web application skeleton using Fano, Pascal web application framework
+Example web application skeleton with middleware using Fano, Pascal web application framework
 
 ## Requirement
 
