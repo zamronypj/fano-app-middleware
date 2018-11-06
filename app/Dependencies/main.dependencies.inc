@@ -17,25 +17,31 @@ container.add(
 );
 
 {-----------------------------------------------
-  register middleware list for each routes that
-  does nothing,
+  register middleware list for application
+------------------------------------------------}
+container.add('appMiddlewares', TMiddlewareCollectionAwareFactory.create());
+
+{-----------------------------------------------
+  register middleware list for each routes
   need to be use factory so each route will have
   different middleware list
 ------------------------------------------------}
-container.factory('routeMiddlewares', TNullMiddlewareCollectionAwareFactory.create());
+container.factory('routeMiddlewares', TMiddlewareCollectionAwareFactory.create());
 
 {-----------------------------------------------
-  register application simple router instance
-  which does not support middleware
+  register simple application router that match
+  exact placeholder (without regex)
 ------------------------------------------------}
 container.add('router', TSimpleRouteCollectionFactory.create());
 
 {-----------------------------------------------
-  setup application request dispatcher
+  setup basic application request dispatcher
+  which support middleware
 ------------------------------------------------}
 container.add(
     'dispatcher',
-    TSimpleDispatcherFactory.create(
+    TDispatcherFactory.create(
+        container.get('appMiddlewares') as IMiddlewareCollectionAware,
         container.get('router') as IRouteMatcher
     )
 );

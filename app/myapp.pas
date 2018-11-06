@@ -30,7 +30,12 @@ uses
     {*! -------------------------------
         controllers factory
     ----------------------------------- *}
-    HiControllerFactory;
+    HiControllerFactory,
+
+    {*! -------------------------------
+        middlewares factory
+    ----------------------------------- *}
+    AjaxOnlyMiddlewareFactory;
 
 
     procedure TMyApp.buildDependencies(const container : IDependencyContainer);

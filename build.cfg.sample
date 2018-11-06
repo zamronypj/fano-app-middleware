@@ -32,11 +32,11 @@
 #----------------------------------------------
 -Fu$USER_APP_DIR$/Dependencies
 -Fu$USER_APP_DIR$/Routes
--Fu$USER_APP_DIR$/App/Hello/Controllers
--Fu$USER_APP_DIR$/App/Hello/Controllers/Factories
--Fu$USER_APP_DIR$/App/Hello/Views
 -Fu$USER_APP_DIR$/App/Hi/Controllers
 -Fu$USER_APP_DIR$/App/Hi/Controllers/Factories
+-Fu$USER_APP_DIR$/Middlewares
+-Fu$USER_APP_DIR$/Middlewares/AjaxOnly
+-Fu$USER_APP_DIR$/Middlewares/AjaxOnly/Factories
 #-Fu$USER_APP_DIR$/path/to/other/units
 #-Fu$USER_APP_DIR$/path/to/other/units
 
