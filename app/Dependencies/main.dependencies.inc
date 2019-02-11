@@ -32,7 +32,7 @@ container.factory('routeMiddlewares', TMiddlewareCollectionAwareFactory.create()
   register simple application router that match
   exact placeholder (without regex)
 ------------------------------------------------}
-container.add('router', TSimpleRouteCollectionFactory.create());
+container.add('router', TSimpleRouterFactory.create());
 
 {-----------------------------------------------
   setup basic application request dispatcher
