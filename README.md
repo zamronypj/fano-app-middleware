@@ -92,6 +92,11 @@ environment variable. By default is `app.cgi` filename.
 
 ## Run
 
+After you setup web server application, you can access URL `/hi/{name}` via POST where `{name}` is anything you want, e.g., `/hi/John`.
+You may want to use tools such as Postman to be able to execute POST request easily.
+
+Above route is protected with sample middleware that will block any request that is not POST AJAX request, i.e, any POST requests without header `X-Requested-With: XMLHttpRequest`. If you add required header, your POST request will passthrough.
+
 ### Run with a webserver
 
 Setup a virtual host. Please consult documentation of web server you use.
