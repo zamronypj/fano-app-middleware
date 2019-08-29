@@ -29,12 +29,6 @@ container.add('appMiddlewares', TMiddlewareCollectionAwareFactory.create());
 container.factory('routeMiddlewares', TMiddlewareCollectionAwareFactory.create());
 
 {-----------------------------------------------
-  register simple application router that match
-  exact placeholder (without regex)
-------------------------------------------------}
-container.add('router', TSimpleRouterFactory.create());
-
-{-----------------------------------------------
   setup basic application request dispatcher
   which support middleware
 ------------------------------------------------}
@@ -42,6 +36,7 @@ container.add(
     'dispatcher',
     TDispatcherFactory.create(
         container.get('appMiddlewares') as IMiddlewareCollectionAware,
-        container.get('router') as IRouteMatcher
+        container.get('router') as IRouteMatcher,
+        TRequestResponseFactory.create()
     )
 );
