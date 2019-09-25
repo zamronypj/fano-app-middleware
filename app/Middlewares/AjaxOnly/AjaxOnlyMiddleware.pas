@@ -27,7 +27,7 @@ type
             const request : IRequest;
             const response : IResponse;
             const args : IRouteArgsReader;
-            var canContinue : boolean
+            const next : IRequestHandler
         ) : IResponse;
     end;
 
@@ -37,15 +37,17 @@ implementation
         const request : IRequest;
         const response : IResponse;
         const args : IRouteArgsReader;
-        var canContinue : boolean
+        const next : IRequestHandler
     ) : IResponse;
     begin
-        canContinue := request.isXhr();
-        if (not canContinue) then
+        if (not request.isXhr()) then
         begin
-             response.headers().setHeader('Status', '403 Not Ajax Request');
+            response.headers().setHeader('Status', '403 Not Ajax Request');
+            result := response;
+        end else
+        begin
+            result := next.handleRequest(request, response, args);
         end;
-        result := response;
     end;
 
 end.

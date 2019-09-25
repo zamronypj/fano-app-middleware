@@ -19,14 +19,7 @@ container.add(
 {-----------------------------------------------
   register middleware list for application
 ------------------------------------------------}
-container.add('appMiddlewares', TMiddlewareCollectionAwareFactory.create());
-
-{-----------------------------------------------
-  register middleware list for each routes
-  need to be use factory so each route will have
-  different middleware list
-------------------------------------------------}
-container.factory('routeMiddlewares', TMiddlewareCollectionAwareFactory.create());
+container.add('appMiddlewares', TMiddlewareListFactory.create());
 
 {-----------------------------------------------
   setup basic application request dispatcher
@@ -35,7 +28,7 @@ container.factory('routeMiddlewares', TMiddlewareCollectionAwareFactory.create()
 container.add(
     'dispatcher',
     TDispatcherFactory.create(
-        container.get('appMiddlewares') as IMiddlewareCollectionAware,
+        container.get('appMiddlewares') as IMiddlewareLinkList,
         container.get('router') as IRouteMatcher,
         TRequestResponseFactory.create()
     )

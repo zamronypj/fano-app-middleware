@@ -8,4 +8,4 @@
 router.post(
     '/hi/{name}',
     container.get('hiController') as IRequestHandler
-).before(container.get('ajaxOnlyMiddleware') as IMiddleware);
+).add(container.get('ajaxOnlyMiddleware') as IMiddleware);
