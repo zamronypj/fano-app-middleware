@@ -26,6 +26,7 @@ type
         function handleRequest(
             const request : IRequest;
             const response : IResponse;
+            const args : IRouteArgsReader;
             var canContinue : boolean
         ) : IResponse;
     end;
@@ -33,9 +34,10 @@ type
 implementation
 
     function TAjaxOnlyMiddleware.handleRequest(
-          const request : IRequest;
-          const response : IResponse;
-          var canContinue : boolean
+        const request : IRequest;
+        const response : IResponse;
+        const args : IRouteArgsReader;
+        var canContinue : boolean
     ) : IResponse;
     begin
         canContinue := request.isXhr();

@@ -5,9 +5,7 @@
  * @copyright Copyright (c) 2018 Zamrony P. Juhara
  * @license   https://github.com/fanoframework/fano-app-middleware/blob/master/LICENSE (GPL 3.0)
  *------------------------------------------------------------- *)
-(router.post(
+router.post(
     '/hi/{name}',
-    container.get('hiController') as IRouteHandler
-) as IMiddlewareCollectionAware).addBefore(
-    container.get('ajaxOnlyMiddleware') as IMiddleware
-);
+    container.get('hiController') as IRequestHandler
+).before(container.get('ajaxOnlyMiddleware') as IMiddleware);
