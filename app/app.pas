@@ -15,10 +15,9 @@ var
     appInstance : IWebApplication;
 
 begin
-    appInstance := TMyApp.create(
-        TDependencyContainer.create(TDependencyList.create()),
-        TCGIEnvironment.create(),
-        TErrorHandler.create()
+    appInstance := TCgiWebApplication.create(
+        TMyAppServiceProvider.create(),
+        TMyAppRoutes.create()
     );
     appInstance.run();
 end.
