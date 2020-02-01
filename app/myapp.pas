@@ -15,6 +15,13 @@ uses
 type
 
     TMyAppServiceProvider = class(TBasicAppServiceProvider)
+    protected
+        function buildAppConfig(const ctnr : IDependencyContainer) : IAppConfiguration; override;
+        function buildDispatcher(
+            const ctnr : IDependencyContainer;
+            const routeMatcher : IRouteMatcher;
+            const config : IAppConfiguration
+        ) : IDispatcher; override;
     public
         procedure register(const container : IDependencyContainer); override;
     end;
@@ -43,6 +50,37 @@ uses
     ----------------------------------- *}
     AjaxOnlyMiddlewareFactory;
 
+    function TMyAppServiceProvider.buildAppConfig(const ctnr : IDependencyContainer) : IAppConfiguration;
+    begin
+        ctnr.add(
+            'config',
+            TJsonFileConfigFactory.create(
+                extractFileDir(getCurrentDir()) + '/app/config/config.json'
+            )
+        );
+        result := ctnr.get('config') as IAppConfiguration;
+    end;
+
+    function TMyAppServiceProvider.buildDispatcher(
+        const ctnr : IDependencyContainer;
+        const routeMatcher : IRouteMatcher;
+        const config : IAppConfiguration
+    ) : IDispatcher;
+    var dispatcherSvc : string;
+    begin
+        ctnr.add('appMiddlewares', TMiddlewareListFactory.create());
+
+        dispatcherSvc := GuidToString(IDispatcher);
+        ctnr.add(
+            dispatcherSvc,
+            TDispatcherFactory.create(
+                ctnr.get('appMiddlewares') as IMiddlewareLinkList,
+                routeMatcher,
+                TRequestResponseFactory.create()
+            )
+        );
+        result := ctnr.get(dispatcherSvc) as IDispatcher;
+    end;
 
     procedure TMyAppServiceProvider.register(const container : IDependencyContainer);
     begin
